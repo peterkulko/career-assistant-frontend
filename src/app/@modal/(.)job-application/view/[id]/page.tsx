@@ -1,4 +1,3 @@
-import { jobApplicationsMockData } from "@/app/page";
 import { JobApplicationDialog } from "./JobApplicationDialog";
 
 interface JobApplicationModalProps {
@@ -9,7 +8,9 @@ export default async function JobApplicationModal({
   params,
 }: JobApplicationModalProps) {
   const { id } = await params;
-  const jobApplication = jobApplicationsMockData.find((item) => item.id === id);
+
+  const response = await fetch(`${process.env.API_BASE_URL}/api/job-applications/${id}`);
+  const jobApplication = await response.json();
 
   if (!jobApplication) {
     return null;

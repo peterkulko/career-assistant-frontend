@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AlertCircleIcon, ArrowLeftIcon } from "lucide-react";
-import { jobApplicationsMockData, statusVariant } from "@/app/page";
+import { statusVariant } from "@/app/page";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertTitle } from "@/components/ui/alert";
@@ -19,7 +19,9 @@ interface JobApplicationPageProps {
 
 export default async function JobApplicationPage({ params }: JobApplicationPageProps) {
   const { id } = await params;
-  const jobApplication = jobApplicationsMockData.find((item) => item.id === id);
+
+  const response = await fetch(`${process.env.API_BASE_URL}/api/job-applications/${id}`);
+  const jobApplication = await response.json();
 
   if (!jobApplication) {
     return (
