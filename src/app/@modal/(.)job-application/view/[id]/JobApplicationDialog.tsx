@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { statusVariant } from "@/app/page";
+import { statusVariant } from "@/lib/job-application";
 
 interface JobApplicationDialogProps {
   jobApplication: {

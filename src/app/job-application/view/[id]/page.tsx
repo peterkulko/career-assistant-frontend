@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AlertCircleIcon, ArrowLeftIcon } from "lucide-react";
-import { statusVariant } from "@/app/page";
+import { statusVariant } from "@/lib/job-application";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertTitle } from "@/components/ui/alert";
