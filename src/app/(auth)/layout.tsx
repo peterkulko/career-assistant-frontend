@@ -1,4 +1,8 @@
-export default function AuthLayout({ children }: { children: React.ReactNode }) {
+export default function AuthLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div>
       <h1 className="text-2xl font-semibold">Auth Layout</h1>
@@ -7,5 +11,5 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       </p>
       {children}
     </div>
-  )
+  );
 }

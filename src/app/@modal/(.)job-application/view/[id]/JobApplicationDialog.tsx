@@ -22,7 +22,9 @@ interface JobApplicationDialogProps {
   };
 }
 
-export function JobApplicationDialog({ jobApplication }: JobApplicationDialogProps) {
+export function JobApplicationDialog({
+  jobApplication,
+}: JobApplicationDialogProps) {
   const router = useRouter();
   const { position, company, status, appliedAt, url, notes } = jobApplication;
 
@@ -38,7 +40,11 @@ export function JobApplicationDialog({ jobApplication }: JobApplicationDialogPro
           <span className="text-sm text-muted-foreground">
             Applied {new Date(appliedAt).toLocaleDateString("en-US")}
           </span>
-          <Badge variant={statusVariant[status as keyof typeof statusVariant] ?? "outline"}>
+          <Badge
+            variant={
+              statusVariant[status as keyof typeof statusVariant] ?? "outline"
+            }
+          >
             {status}
           </Badge>
         </div>

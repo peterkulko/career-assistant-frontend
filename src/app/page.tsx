@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircleIcon, InfoIcon } from "lucide-react";
@@ -13,7 +20,9 @@ type jobApplicationDto = components["schemas"]["JobApplicationEntity"];
 
 async function getJobApplications(): Promise<jobApplicationDto[] | null> {
   try {
-    const response = await fetch(`${process.env.API_BASE_URL}/api/job-applications`);
+    const response = await fetch(
+      `${process.env.API_BASE_URL}/api/job-applications`,
+    );
     if (!response.ok) {
       return null;
     }
@@ -24,7 +33,11 @@ async function getJobApplications(): Promise<jobApplicationDto[] | null> {
   }
 }
 
-function JobApplicationList({ jobApplications }: { jobApplications: jobApplicationDto[] }) {
+function JobApplicationList({
+  jobApplications,
+}: {
+  jobApplications: jobApplicationDto[];
+}) {
   return (
     <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {jobApplications.map(({ id, company, position, status, appliedAt }) => (
@@ -38,7 +51,12 @@ function JobApplicationList({ jobApplications }: { jobApplications: jobApplicati
               <span className="text-sm text-muted-foreground">
                 Applied {new Date(appliedAt).toLocaleDateString()}
               </span>
-              <Badge variant={statusVariant[status as keyof typeof statusVariant] ?? "outline"}>
+              <Badge
+                variant={
+                  statusVariant[status as keyof typeof statusVariant] ??
+                  "outline"
+                }
+              >
                 {status}
               </Badge>
             </CardContent>
@@ -49,7 +67,11 @@ function JobApplicationList({ jobApplications }: { jobApplications: jobApplicati
               <ConfirmDialog
                 title="Delete this job application?"
                 description={`This will permanently delete your application for ${position} at ${company}. This action cannot be undone.`}
-                trigger={<Button className="w-full" variant="destructive">Delete</Button>}
+                trigger={
+                  <Button className="w-full" variant="destructive">
+                    Delete
+                  </Button>
+                }
                 cancelLabel="Keep application"
                 confirmLabel="Delete"
                 pendingLabel="Deleting..."
@@ -69,16 +91,15 @@ export default async function Home() {
   return (
     <main className="p-6">
       <Link href="/job-application/create" className="mb-4 inline-block">
-        <Button>
-          Create job application
-        </Button>
+        <Button>Create job application</Button>
       </Link>
       {jobApplications === null ? (
         <Alert variant="destructive">
           <AlertCircleIcon />
           <AlertTitle>Unable to load job applications</AlertTitle>
           <AlertDescription>
-            Something went wrong while contacting the server. Please try again later.
+            Something went wrong while contacting the server. Please try again
+            later.
           </AlertDescription>
         </Alert>
       ) : jobApplications.length === 0 ? (

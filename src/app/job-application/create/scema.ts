@@ -9,4 +9,6 @@ export const createJobApplicationSchema = z.object({
   notes: z.string().optional(),
 });
 
-export type CreateJobApplicationFormValues = z.infer<typeof createJobApplicationSchema>;
+export type CreateJobApplicationFormValues = z.infer<
+  typeof createJobApplicationSchema
+>;

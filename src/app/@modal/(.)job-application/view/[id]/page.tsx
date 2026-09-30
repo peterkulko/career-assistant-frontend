@@ -9,7 +9,9 @@ export default async function JobApplicationModal({
 }: JobApplicationModalProps) {
   const { id } = await params;
 
-  const response = await fetch(`${process.env.API_BASE_URL}/api/job-applications/${id}`);
+  const response = await fetch(
+    `${process.env.API_BASE_URL}/api/job-applications/${id}`,
+  );
   const jobApplication = await response.json();
 
   if (!jobApplication) {

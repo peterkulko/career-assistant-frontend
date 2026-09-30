@@ -1,4 +1,4 @@
-'use server'
+"use server";
 
 import { createJobApplicationSchema } from "./scema";
 
@@ -9,7 +9,7 @@ export type CreateJobApplicationState = {
 
 export async function createJobApplication(
   _prevState: CreateJobApplicationState,
-  formData: FormData
+  formData: FormData,
 ): Promise<CreateJobApplicationState> {
   const parsed = createJobApplicationSchema.safeParse({
     company: formData.get("company"),
@@ -37,11 +37,17 @@ export async function createJobApplication(
       }),
     });
   } catch {
-    return { errors: { form: ["Unable to reach the server. Please try again later."] } };
+    return {
+      errors: { form: ["Unable to reach the server. Please try again later."] },
+    };
   }
 
   if (!response.ok) {
-    return { errors: { form: [`Failed to create job application: ${response.status}`] } };
+    return {
+      errors: {
+        form: [`Failed to create job application: ${response.status}`],
+      },
+    };
   }
 
   return { success: true };

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { startTransition, useActionState, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -28,12 +28,21 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import { createJobApplication, type CreateJobApplicationState } from "./actions";
-import { createJobApplicationSchema, type CreateJobApplicationFormValues } from "./scema";
+import {
+  createJobApplication,
+  type CreateJobApplicationState,
+} from "./actions";
+import {
+  createJobApplicationSchema,
+  type CreateJobApplicationFormValues,
+} from "./scema";
 
 const initialState: CreateJobApplicationState = {};
 
-const statuses: Array<{ label: string; value: CreateJobApplicationFormValues["status"] }> = [
+const statuses: Array<{
+  label: string;
+  value: CreateJobApplicationFormValues["status"];
+}> = [
   { label: "Applied", value: "Applied" },
   { label: "Interview", value: "Interview" },
   { label: "Offer", value: "Offer" },
@@ -44,7 +53,10 @@ const today = new Date().toISOString().split("T")[0];
 
 export default function CreateJobApplicationPage() {
   const router = useRouter();
-  const [state, formAction, pending] = useActionState(createJobApplication, initialState);
+  const [state, formAction, pending] = useActionState(
+    createJobApplication,
+    initialState,
+  );
 
   useEffect(() => {
     if (state.success) {
@@ -107,30 +119,44 @@ export default function CreateJobApplicationPage() {
             </FieldDescription>
             <FieldGroup>
               <Field>
-                <FieldLabel htmlFor="job-application-company">Company</FieldLabel>
+                <FieldLabel htmlFor="job-application-company">
+                  Company
+                </FieldLabel>
                 <Input
                   id="job-application-company"
                   placeholder="Raccoon Gang"
                   {...register("company")}
                 />
                 <FieldError
-                  errors={errors.company ? [{ message: errors.company.message }] : undefined}
+                  errors={
+                    errors.company
+                      ? [{ message: errors.company.message }]
+                      : undefined
+                  }
                 />
               </Field>
               <Field>
-                <FieldLabel htmlFor="job-application-position">Position</FieldLabel>
+                <FieldLabel htmlFor="job-application-position">
+                  Position
+                </FieldLabel>
                 <Input
                   id="job-application-position"
                   placeholder="Frontend Developer"
                   {...register("position")}
                 />
                 <FieldError
-                  errors={errors.position ? [{ message: errors.position.message }] : undefined}
+                  errors={
+                    errors.position
+                      ? [{ message: errors.position.message }]
+                      : undefined
+                  }
                 />
               </Field>
               <div className="grid grid-cols-2 gap-4">
                 <Field>
-                  <FieldLabel htmlFor="job-application-status">Status</FieldLabel>
+                  <FieldLabel htmlFor="job-application-status">
+                    Status
+                  </FieldLabel>
                   <Controller
                     control={control}
                     name="status"
@@ -141,7 +167,10 @@ export default function CreateJobApplicationPage() {
                         value={field.value}
                         onValueChange={field.onChange}
                       >
-                        <SelectTrigger id="job-application-status" className="w-full">
+                        <SelectTrigger
+                          id="job-application-status"
+                          className="w-full"
+                        >
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -157,7 +186,11 @@ export default function CreateJobApplicationPage() {
                     )}
                   />
                   <FieldError
-                    errors={errors.status ? [{ message: errors.status.message }] : undefined}
+                    errors={
+                      errors.status
+                        ? [{ message: errors.status.message }]
+                        : undefined
+                    }
                   />
                 </Field>
                 <Field>
@@ -170,7 +203,11 @@ export default function CreateJobApplicationPage() {
                     {...register("appliedAt")}
                   />
                   <FieldError
-                    errors={errors.appliedAt ? [{ message: errors.appliedAt.message }] : undefined}
+                    errors={
+                      errors.appliedAt
+                        ? [{ message: errors.appliedAt.message }]
+                        : undefined
+                    }
                   />
                 </Field>
               </div>
@@ -179,7 +216,9 @@ export default function CreateJobApplicationPage() {
           <FieldSet>
             <FieldGroup>
               <Field>
-                <FieldLabel htmlFor="job-application-url">Job posting URL</FieldLabel>
+                <FieldLabel htmlFor="job-application-url">
+                  Job posting URL
+                </FieldLabel>
                 <Input
                   id="job-application-url"
                   type="url"
@@ -187,7 +226,11 @@ export default function CreateJobApplicationPage() {
                   {...register("url")}
                 />
                 <FieldDescription>Optional</FieldDescription>
-                <FieldError errors={errors.url ? [{ message: errors.url.message }] : undefined} />
+                <FieldError
+                  errors={
+                    errors.url ? [{ message: errors.url.message }] : undefined
+                  }
+                />
               </Field>
               <Field>
                 <FieldLabel htmlFor="job-application-notes">Notes</FieldLabel>
@@ -198,7 +241,13 @@ export default function CreateJobApplicationPage() {
                   {...register("notes")}
                 />
                 <FieldDescription>Optional</FieldDescription>
-                <FieldError errors={errors.notes ? [{ message: errors.notes.message }] : undefined} />
+                <FieldError
+                  errors={
+                    errors.notes
+                      ? [{ message: errors.notes.message }]
+                      : undefined
+                  }
+                />
               </Field>
             </FieldGroup>
           </FieldSet>
@@ -210,7 +259,10 @@ export default function CreateJobApplicationPage() {
             </Alert>
           )}
           <Field orientation="horizontal">
-            <Button type="submit" disabled={pending || Object.keys(errors).length > 0}>
+            <Button
+              type="submit"
+              disabled={pending || Object.keys(errors).length > 0}
+            >
               Save application
             </Button>
             <Button

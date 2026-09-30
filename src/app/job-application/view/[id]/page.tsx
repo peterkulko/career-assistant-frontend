@@ -17,10 +17,14 @@ interface JobApplicationPageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function JobApplicationPage({ params }: JobApplicationPageProps) {
+export default async function JobApplicationPage({
+  params,
+}: JobApplicationPageProps) {
   const { id } = await params;
 
-  const response = await fetch(`${process.env.API_BASE_URL}/api/job-applications/${id}`);
+  const response = await fetch(
+    `${process.env.API_BASE_URL}/api/job-applications/${id}`,
+  );
   const jobApplication = await response.json();
 
   if (!jobApplication) {
@@ -54,7 +58,11 @@ export default async function JobApplicationPage({ params }: JobApplicationPageP
           <CardTitle className="text-2xl">{position}</CardTitle>
           <CardDescription>@ {company}</CardDescription>
           <CardAction>
-            <Badge variant={statusVariant[status as keyof typeof statusVariant] ?? "outline"}>
+            <Badge
+              variant={
+                statusVariant[status as keyof typeof statusVariant] ?? "outline"
+              }
+            >
               {status}
             </Badge>
           </CardAction>
