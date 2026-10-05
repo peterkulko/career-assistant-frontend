@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { AlertCircleIcon, InfoIcon } from "lucide-react";
+import type { Metadata } from "next";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,11 +13,16 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertCircleIcon, InfoIcon } from "lucide-react";
+import { ConfirmDialog } from "@/components/ConfirmDialog";
+
 import type { components } from "@/types/api";
 import { deleteJobApplication } from "@/app/actions";
-import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { statusVariant } from "@/lib/job-application";
+
+export const metadata: Metadata = {
+  title: "Career Assistant - Job Applications",
+  description: "Track and manage your job applications in one place.",
+};
 
 type jobApplicationDto = components["schemas"]["JobApplicationEntity"];
 
@@ -89,7 +97,7 @@ export default async function Home() {
   const jobApplications = await getJobApplications();
 
   return (
-    <main className="p-6">
+    <main>
       <Link href="/job-application/create" className="mb-4 inline-block">
         <Button>Create job application</Button>
       </Link>

@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import type { ReactNode } from "react";
 
-import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
 
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -46,10 +47,11 @@ export default function RootLayout({ children, modal }: RootLayoutProps) {
     >
       <body className="flex min-h-full flex-col">
         <Header />
-        {children}
-        <Footer />
+        <div className="container mx-auto flex-1 px-4 py-6">{children}</div>
+
         {modal}
         <Toaster />
+        <Footer />
       </body>
     </html>
   );

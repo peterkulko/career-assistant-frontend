@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { AlertCircleIcon, ArrowLeftIcon } from "lucide-react";
+import type { Metadata } from "next";
+
 import { statusVariant } from "@/lib/job-application";
+
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertTitle } from "@/components/ui/alert";
@@ -12,6 +15,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
+export const metadata: Metadata = {
+  title: "Career Assistant - Job Application Details",
+  description:
+    "View the details of a specific job application, including status, company, and notes.",
+};
 
 interface JobApplicationPageProps {
   params: Promise<{ id: string }>;
@@ -41,7 +50,7 @@ export default async function JobApplicationPage({
   const { position, company, status, appliedAt, url, notes } = jobApplication;
 
   return (
-    <main className="mx-auto w-full max-w-2xl p-6">
+    <main className="max-w-2xl">
       <Button
         variant="ghost"
         size="sm"
