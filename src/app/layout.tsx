@@ -6,6 +6,9 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
 
+import { Header } from "./Header";
+import { Footer } from "./Footer";
+
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
@@ -42,7 +45,9 @@ export default function RootLayout({ children, modal }: RootLayoutProps) {
       )}
     >
       <body className="flex min-h-full flex-col">
+        <Header />
         {children}
+        <Footer />
         {modal}
         <Toaster />
       </body>
